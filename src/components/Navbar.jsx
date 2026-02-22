@@ -59,12 +59,12 @@ export default function Navbar() {
               Policies <span className="arrow">&#9662;</span>
             </a>
             <ul className="dropdown-menu">
-              <li><a href="#economy" onClick={() => scrollTo('economy')}>Economy</a></li>
-              <li><a href="#food-agriculture" onClick={() => scrollTo('food-agriculture')}>Food &amp; Agriculture</a></li>
-              <li><a href="#law-justice" onClick={() => scrollTo('law-justice')}>Law &amp; Justice</a></li>
-              <li><a href="#transport-cities" onClick={() => scrollTo('transport-cities')}>Transport &amp; Cities</a></li>
-              <li><a href="#aesthetics" onClick={() => scrollTo('aesthetics')}>Aesthetics &amp; Public Order</a></li>
-              <li><a href="#finance" onClick={() => scrollTo('finance')}>Finance &amp; Anti-Corruption</a></li>
+              <li><a href="#economy" onClick={(e) => { e.preventDefault(); scrollTo('economy') }}>Economy</a></li>
+              <li><a href="#food-agriculture" onClick={(e) => { e.preventDefault(); scrollTo('food-agriculture') }}>Food &amp; Agriculture</a></li>
+              <li><a href="#law-justice" onClick={(e) => { e.preventDefault(); scrollTo('law-justice') }}>Law &amp; Justice</a></li>
+              <li><a href="#transport-cities" onClick={(e) => { e.preventDefault(); scrollTo('transport-cities') }}>Transport &amp; Cities</a></li>
+              <li><a href="#aesthetics" onClick={(e) => { e.preventDefault(); scrollTo('aesthetics') }}>Aesthetics &amp; Public Order</a></li>
+              <li><a href="#finance" onClick={(e) => { e.preventDefault(); scrollTo('finance') }}>Finance &amp; Anti-Corruption</a></li>
             </ul>
           </li>
           <li><Link to="/" className="nav-link" onClick={() => scrollTo('research')}>Research</Link></li>
