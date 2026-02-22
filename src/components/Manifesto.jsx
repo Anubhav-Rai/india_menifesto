@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion'
+import AnimatedSection, { itemVariants } from './AnimatedSection'
+
 const cards = [
   {
     num: '01',
@@ -54,23 +57,23 @@ const cards = [
 export default function Manifesto() {
   return (
     <section className="section section-dark" id="manifesto">
-      <div className="container">
-        <h2 className="section-title center">The Manifesto</h2>
-        <p className="section-subtitle">
+      <AnimatedSection className="container">
+        <motion.h2 className="section-title center" variants={itemVariants}>The Manifesto</motion.h2>
+        <motion.p className="section-subtitle" variants={itemVariants}>
           India will not be rebuilt by arguments about gods, caste purity, or inherited status.
           India will be rebuilt by a new shared identity, civic discipline, and systems that
           reward competence and cooperation.
-        </p>
+        </motion.p>
         <div className="manifesto-grid">
           {cards.map((c) => (
-            <div className="manifesto-card" key={c.num}>
+            <motion.div className="manifesto-card" key={c.num} variants={itemVariants}>
               <div className="card-number">{c.num}</div>
               <h3>{c.title}</h3>
               {c.body}
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </AnimatedSection>
     </section>
   )
 }

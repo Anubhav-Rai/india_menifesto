@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedSection, { itemVariants } from './AnimatedSection'
 
 const policies = [
   {
@@ -76,35 +78,54 @@ export default function Policies() {
 
   return (
     <section className="section section-dark" id="policies">
-      <div className="container">
-        <h2 className="section-title center">Policies</h2>
-        <p className="section-subtitle">
+      <AnimatedSection className="container">
+        <motion.h2 className="section-title center" variants={itemVariants}>Policies</motion.h2>
+        <motion.p className="section-subtitle" variants={itemVariants}>
           Concrete plans across six domains. Click each to expand.
-        </p>
-        <div className="policy-accordion">
+        </motion.p>
+        <motion.div className="policy-accordion" variants={itemVariants}>
           {policies.map((p) => (
             <div
-              className={`policy-item ${openId === p.id ? 'open' : ''}`}
+              className="policy-item"
               key={p.id}
               id={p.id}
             >
               <button className="policy-header" onClick={() => toggle(p.id)}>
                 <span className="policy-icon">&#9670;</span>
                 <span>{p.title}</span>
-                <span className="policy-toggle">+</span>
+                <motion.span
+                  className="policy-toggle"
+                  animate={{ rotate: openId === p.id ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  +
+                </motion.span>
               </button>
-              <div className="policy-body">
-                <p className="policy-goal"><strong>Goal:</strong> {p.goal}</p>
-                <ul>
-                  {p.items.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              <AnimatePresence initial={false}>
+                {openId === p.id && (
+                  <motion.div
+                    className="policy-body"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    style={{ overflow: 'hidden', maxHeight: 'none', padding: undefined }}
+                  >
+                    <div style={{ paddingBottom: 24, paddingLeft: 32 }}>
+                      <p className="policy-goal"><strong>Goal:</strong> {p.goal}</p>
+                      <ul>
+                        {p.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </AnimatedSection>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import CoreClaim from './components/CoreClaim'
@@ -13,7 +14,11 @@ import Footer from './components/Footer'
 
 function HomePage() {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Hero />
       <CoreClaim />
       <Manifesto />
@@ -23,7 +28,7 @@ function HomePage() {
       <FAQ />
       <Join />
       <Donate />
-    </>
+    </motion.div>
   )
 }
 

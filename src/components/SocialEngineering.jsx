@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion'
+import AnimatedSection, { itemVariants } from './AnimatedSection'
+
 const sections = [
   {
     icon: 'A',
@@ -58,15 +61,15 @@ const sections = [
 export default function SocialEngineering() {
   return (
     <section className="section section-light" id="social-engineering">
-      <div className="container">
-        <h2 className="section-title center">Social Engineering</h2>
-        <p className="section-subtitle">
+      <AnimatedSection className="container">
+        <motion.h2 className="section-title center" variants={itemVariants}>Social Engineering</motion.h2>
+        <motion.p className="section-subtitle" variants={itemVariants}>
           How we dismantle caste identity and build a shared civic identity&mdash;without force,
           through incentives, education, and culture.
-        </p>
+        </motion.p>
         <div className="se-grid">
           {sections.map((s) => (
-            <div className="se-card" key={s.icon}>
+            <motion.div className="se-card" key={s.icon} variants={itemVariants}>
               <div className="se-icon">{s.icon}</div>
               <h3>{s.title}</h3>
               {s.desc && <p>{s.desc}</p>}
@@ -75,10 +78,10 @@ export default function SocialEngineering() {
                   <li key={i}>{item}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </AnimatedSection>
     </section>
   )
 }

@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setScrolled(latest > 50)
+  })
 
   useEffect(() => {
     setMenuOpen(false)
@@ -19,7 +26,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <Link to="/" className="nav-logo" onClick={() => scrollTo('home')}>
           <span className="logo-icon">&#9670;</span> The Indian Alloy Project

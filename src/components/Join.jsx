@@ -1,4 +1,16 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import AnimatedSection, { itemVariants } from './AnimatedSection'
+
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
+
+const slideFromRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
 
 export default function Join() {
   const [submitted, setSubmitted] = useState(false)
@@ -10,13 +22,13 @@ export default function Join() {
 
   return (
     <section className="section section-accent" id="join">
-      <div className="container">
-        <h2 className="section-title center">Join the Movement</h2>
-        <p className="section-subtitle">
+      <AnimatedSection className="container">
+        <motion.h2 className="section-title center" variants={itemVariants}>Join the Movement</motion.h2>
+        <motion.p className="section-subtitle" variants={itemVariants}>
           Every hand counts. Here&rsquo;s how you can help build a new India.
-        </p>
+        </motion.p>
         <div className="join-grid">
-          <div className="join-actions">
+          <motion.div className="join-actions" variants={slideFromLeft}>
             <h3>What you can do</h3>
             <ul>
               <li>Run a local &ldquo;Quiet &amp; Clean&rdquo; drive with measured results.</li>
@@ -24,8 +36,8 @@ export default function Join() {
               <li>Help inter-caste couples access support services.</li>
               <li>Translate content into regional languages.</li>
             </ul>
-          </div>
-          <div className="join-form">
+          </motion.div>
+          <motion.div className="join-form" variants={slideFromRight}>
             {submitted ? (
               <div className="form-success">
                 Thank you for signing up! We&rsquo;ll be in touch soon.
@@ -71,9 +83,9 @@ export default function Join() {
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </AnimatedSection>
     </section>
   )
 }

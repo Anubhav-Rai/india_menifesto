@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedSection, { itemVariants } from './AnimatedSection'
 
 const faqs = [
   {
@@ -28,22 +30,39 @@ export default function FAQ() {
 
   return (
     <section className="section section-dark" id="faq">
-      <div className="container">
-        <h2 className="section-title center">Frequently Asked Questions</h2>
-        <div className="faq-grid" style={{ marginTop: '48px' }}>
+      <AnimatedSection className="container">
+        <motion.h2 className="section-title center" variants={itemVariants}>Frequently Asked Questions</motion.h2>
+        <motion.div className="faq-grid" style={{ marginTop: '48px' }} variants={itemVariants}>
           {faqs.map((f, i) => (
-            <div className={`faq-item ${openIdx === i ? 'open' : ''}`} key={i}>
+            <div className="faq-item" key={i}>
               <button className="faq-question" onClick={() => setOpenIdx(openIdx === i ? null : i)}>
                 {f.q}
-                <span className="faq-toggle">+</span>
+                <motion.span
+                  className="faq-toggle"
+                  animate={{ rotate: openIdx === i ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  +
+                </motion.span>
               </button>
-              <div className="faq-answer">
-                <p>{f.a}</p>
-              </div>
+              <AnimatePresence initial={false}>
+                {openIdx === i && (
+                  <motion.div
+                    className="faq-answer"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    style={{ overflow: 'hidden', maxHeight: 'none' }}
+                  >
+                    <p style={{ paddingBottom: 20 }}>{f.a}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </AnimatedSection>
     </section>
   )
 }

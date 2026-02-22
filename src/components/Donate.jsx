@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion'
+import AnimatedSection, { itemVariants } from './AnimatedSection'
+
 const buckets = [
   { icon: '★', title: 'Cleanliness Campaigns', desc: 'Fund local clean-up drives, bins, waste collection systems, and public hygiene awareness.' },
   { icon: '⚖', title: 'Legal Aid', desc: 'Support legal representation for caste and religious discrimination cases.' },
@@ -8,26 +11,26 @@ const buckets = [
 export default function Donate() {
   return (
     <section className="section section-light" id="donate">
-      <div className="container">
-        <h2 className="section-title center">Donate</h2>
-        <p className="section-subtitle">
+      <AnimatedSection className="container">
+        <motion.h2 className="section-title center" variants={itemVariants}>Donate</motion.h2>
+        <motion.p className="section-subtitle" variants={itemVariants}>
           Fund measurable civic order. Every rupee goes toward tangible programs.
-        </p>
+        </motion.p>
         <div className="donate-grid">
           {buckets.map((b, i) => (
-            <div className="donate-card" key={i}>
+            <motion.div className="donate-card" key={i} variants={itemVariants}>
               <div className="donate-icon">{b.icon}</div>
               <h3>{b.title}</h3>
               <p>{b.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-        <div className="donate-cta">
+        <motion.div className="donate-cta" variants={itemVariants}>
           <a href="mailto:donate@indianalloy.org" className="btn btn-primary btn-large">
             Contact Us to Donate
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </AnimatedSection>
     </section>
   )
 }
