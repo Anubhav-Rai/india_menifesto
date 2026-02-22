@@ -28,9 +28,11 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home" ref={ref}>
+      <div className="hero-grain" />
       <motion.div className="hero-bg" style={{ y: bgY }} />
       <div className="hero-float-shape hero-float-shape--gold" />
       <div className="hero-float-shape hero-float-shape--green" />
+      <div className="hero-float-shape hero-float-shape--purple" />
       <motion.div
         className="container hero-content"
         variants={stagger}
@@ -38,6 +40,7 @@ export default function Hero() {
         animate="visible"
       >
         <motion.p className="hero-tag" variants={fadeUp}>
+          <span className="hero-tag-dot" />
           One people, many lineages, one future.
         </motion.p>
         <motion.h1 className="hero-title" variants={fadeUp}>

@@ -11,6 +11,7 @@ import FAQ from './components/FAQ'
 import Join from './components/Join'
 import Donate from './components/Donate'
 import Footer from './components/Footer'
+import SectionDivider from './components/SectionDivider'
 
 function HomePage() {
   return (
@@ -20,13 +21,21 @@ function HomePage() {
       transition={{ duration: 0.5 }}
     >
       <Hero />
+      <SectionDivider variant="wave" fromColor="#e8f4fd" toColor="#fdf8ef" />
       <CoreClaim />
+      <SectionDivider variant="curve" fromColor="#fdf8ef" toColor="#e8f4fd" />
       <Manifesto />
+      <SectionDivider variant="wave" fromColor="#e8f4fd" toColor="#fdf8ef" />
       <SocialEngineering />
+      <SectionDivider variant="diagonal" fromColor="#fdf8ef" toColor="#e8f4fd" />
       <Policies />
+      <SectionDivider variant="curve" fromColor="#e8f4fd" toColor="#fdf8ef" />
       <Research />
+      <SectionDivider variant="wave" fromColor="#fdf8ef" toColor="#e8f4fd" />
       <FAQ />
+      <SectionDivider variant="diagonal" fromColor="#e8f4fd" toColor="#5ba3d9" />
       <Join />
+      <SectionDivider variant="wave" fromColor="#5ba3d9" toColor="#fdf8ef" />
       <Donate />
     </motion.div>
   )
